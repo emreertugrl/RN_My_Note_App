@@ -14,7 +14,11 @@ const RootNavigation = () => {
       screenOptions={{
         headerBackTitle: 'Geri',
       }}>
-      <Stack.Screen name={ROUTES.MyNotes} component={MyNotes} />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name={ROUTES.MyNotes}
+        component={MyNotes}
+      />
       <Stack.Screen name={ROUTES.AddNote} component={AddNote} />
       <Stack.Screen name={ROUTES.NoteDetail} component={NoteDetail} />
     </Stack.Navigator>
