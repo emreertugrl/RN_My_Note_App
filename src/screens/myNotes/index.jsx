@@ -1,14 +1,15 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {SafeAreaView, View} from 'react-native';
+import {screenStyle} from '../../styles/screenStyle';
+import Header from '../../components/router/header';
 
 const MyNotes = () => {
   return (
-    <View>
-      <Text>MyNotes</Text>
-    </View>
+    <SafeAreaView style={screenStyle.container}>
+      <View style={screenStyle.container}>
+        <Header />
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default MyNotes;
-
-const styles = StyleSheet.create({});
