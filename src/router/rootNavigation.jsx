@@ -5,6 +5,7 @@ import NoteDetail from '../screens/noteDetail';
 import MyNotes from '../screens/myNotes';
 import AddNote from '../screens/addNote';
 import {ROUTES} from '../utils/router';
+import HeaderRightIcons from '../components/uı/headerRightIcons';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,13 @@ const RootNavigation = () => {
         name={ROUTES.MyNotes}
         component={MyNotes}
       />
-      <Stack.Screen name={ROUTES.AddNote} component={AddNote} />
+      <Stack.Screen
+        options={{
+          headerRight: () => <HeaderRightIcons />,
+        }}
+        name={ROUTES.AddNote}
+        component={AddNote}
+      />
       <Stack.Screen name={ROUTES.NoteDetail} component={NoteDetail} />
     </Stack.Navigator>
   );
