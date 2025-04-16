@@ -6,7 +6,7 @@ import {HambergerMenu, More, SearchNormal} from 'iconsax-react-native';
 
 const Header = () => {
   return (
-    <View style={screenStyle.container}>
+    <View style={[screenStyle.container, {flex: 1, marginBottom: 10}]}>
       <View
         style={{
           justifyContent: 'center',

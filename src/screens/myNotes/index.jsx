@@ -13,11 +13,13 @@ const MyNotes = ({navigation}) => {
     <SafeAreaView style={screenStyle.container}>
       <View style={screenStyle.container}>
         <Header />
-        <FlatList
-          data={mockData}
-          renderItem={({item}) => <NoteCard item={item} />}
-          keyExtractor={item => item.id.toString()}
-        />
+        <View style={{flex: 5}}>
+          <FlatList
+            data={mockData}
+            renderItem={({item}) => <NoteCard item={item} />}
+            keyExtractor={item => item.id.toString()}
+          />
+        </View>
         <FloatActionButton
           onPress={() => navigation.navigate(ROUTES.AddNote)}
         />
