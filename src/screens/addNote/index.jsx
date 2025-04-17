@@ -4,9 +4,12 @@ import {screenStyle} from '../../styles/screenStyle';
 import {AppColors} from '../../theme/color';
 import Button from '../../components/uı/button';
 import {getRandomNumber} from '../../utils/functions';
+import {useNavigation} from '@react-navigation/native';
+import {ROUTES} from '../../utils/router';
 
 const AddNote = ({route}) => {
   const {note, type} = route?.params;
+  const navigation = useNavigation();
 
   const [title, setTitle] = useState(note?.title);
   const [description, setDescription] = useState(note?.description);
@@ -21,14 +24,19 @@ const AddNote = ({route}) => {
       setTitleRequired(false);
       setDescriptionRequired(false);
     }
+
     const form = {
-      id: getRandomNumber(1, 100),
+      id: type === 'add' ? getRandomNumber(1, 100) : note.id,
       title: title,
       description: description,
-      date: Date.now(),
+      date: new Date().toLocaleTimeString('tr-TR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
     };
 
-    console.warn(form);
+    // console.warn(form);
+    navigation.navigate(ROUTES.MyNotes, {newNote: form});
   };
   return (
     <SafeAreaView style={screenStyle.container}>
