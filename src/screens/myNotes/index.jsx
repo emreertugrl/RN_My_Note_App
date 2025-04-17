@@ -21,7 +21,7 @@ const MyNotes = ({navigation}) => {
           />
         </View>
         <FloatActionButton
-          onPress={() => navigation.navigate(ROUTES.AddNote)}
+          onPress={() => navigation.navigate(ROUTES.AddNote, {type: 'add'})}
         />
       </View>
     </SafeAreaView>

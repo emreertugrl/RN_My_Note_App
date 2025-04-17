@@ -1,12 +1,17 @@
-import {Pressable, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {Edit, Trash} from 'iconsax-react-native';
 import {AppColors} from '../../theme/color';
 import {noteCardStyle} from '../../styles/noteCardStyle';
+import {useNavigation} from '@react-navigation/native';
+import {ROUTES} from '../../utils/router';
 
 const NoteCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <Pressable style={noteCardStyle.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(ROUTES.NoteDetail, {note: item})}
+      style={noteCardStyle.container}>
       <View style={noteCardStyle.bubleContainer}>
         <View style={noteCardStyle.buble}></View>
       </View>
@@ -18,10 +23,14 @@ const NoteCard = ({item}) => {
       <TouchableOpacity style={noteCardStyle.buttonContainer}>
         <Trash size="24" color={AppColors.RED} />
       </TouchableOpacity>
-      <TouchableOpacity style={noteCardStyle.buttonContainer}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate(ROUTES.AddNote, {note: item, type: 'update'})
+        }
+        style={noteCardStyle.buttonContainer}>
         <Edit size="24" color={AppColors.PRIMARY} variant="Bold" />
       </TouchableOpacity>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 
