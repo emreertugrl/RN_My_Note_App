@@ -6,7 +6,7 @@ import {noteCardStyle} from '../../styles/noteCardStyle';
 import {useNavigation} from '@react-navigation/native';
 import {ROUTES} from '../../utils/router';
 
-const NoteCard = ({item}) => {
+const NoteCard = ({item, deleteNote}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -20,7 +20,9 @@ const NoteCard = ({item}) => {
         <Text style={noteCardStyle.description}>{item.description}</Text>
         <Text style={noteCardStyle.date}>{item.date}</Text>
       </View>
-      <TouchableOpacity style={noteCardStyle.buttonContainer}>
+      <TouchableOpacity
+        style={noteCardStyle.buttonContainer}
+        onPress={deleteNote}>
         <Trash size="24" color={AppColors.RED} />
       </TouchableOpacity>
       <TouchableOpacity

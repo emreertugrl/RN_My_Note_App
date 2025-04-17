@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, View, Text, FlatList} from 'react-native';
+import {SafeAreaView, View, FlatList} from 'react-native';
 import {screenStyle} from '../../styles/screenStyle';
 import Header from '../../components/router/header';
 import FloatActionButton from '../../components/uı/floatActionButton';
@@ -16,10 +16,8 @@ const MyNotes = ({navigation, route}) => {
     setNotes(prev => {
       const exists = prev.find(note => note.id === newNote.id);
       if (exists) {
-        console.warn(exists);
         return prev.map(note => (note.id === newNote.id ? newNote : note));
       } else {
-        console.warn(newNote);
         return [...prev, newNote];
       }
     });
@@ -29,6 +27,10 @@ const MyNotes = ({navigation, route}) => {
     setNotes(mockData);
   }, []);
 
+  function deleteNote(id) {
+    setNotes(notes.filter(note => note.id !== id));
+  }
+
   return (
     <SafeAreaView style={screenStyle.container}>
       <View style={screenStyle.container}>
@@ -36,7 +38,9 @@ const MyNotes = ({navigation, route}) => {
         <View style={{flex: 5}}>
           <FlatList
             data={notes}
-            renderItem={({item}) => <NoteCard item={item} />}
+            renderItem={({item}) => (
+              <NoteCard deleteNote={() => deleteNote(item.id)} item={item} />
+            )}
             keyExtractor={item => item.id.toString()}
           />
         </View>
